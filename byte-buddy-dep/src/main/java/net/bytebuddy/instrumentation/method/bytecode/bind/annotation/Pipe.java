@@ -188,13 +188,13 @@ public @interface Pipe {
                                                                Instrumentation.Target instrumentationTarget,
                                                                Assigner assigner) {
             TypeDescription parameterType = target.getParameterTypes().get(targetParameterIndex);
-            if (!parameterType.equals(forwardingMethod.getDeclaringType())) {
+            if (!parameterType.equals(forwardingMethod.getDeclaringElement())) {
                 throw new IllegalStateException(String.format("The installed type %s for the @Pipe annotation does not " +
                         "equal the annotated parameter type on %s", parameterType, target));
             } else if (source.isStatic()) {
                 return MethodDelegationBinder.ParameterBinding.Illegal.INSTANCE;
             }
-            return new MethodDelegationBinder.ParameterBinding.Anonymous(new Redirection(forwardingMethod.getDeclaringType(),
+            return new MethodDelegationBinder.ParameterBinding.Anonymous(new Redirection(forwardingMethod.getDeclaringElement(),
                     source,
                     assigner,
                     annotation.loadSilent().serializableProxy(),
@@ -445,7 +445,7 @@ public @interface Pipe {
 
                     @Override
                     public Size apply(MethodVisitor methodVisitor, Context instrumentationContext, MethodDescription instrumentedMethod) {
-                        StackManipulation thisReference = MethodVariableAccess.forType(instrumentedMethod.getDeclaringType()).loadFromIndex(0);
+                        StackManipulation thisReference = MethodVariableAccess.forType(instrumentedMethod.getDeclaringElement()).loadFromIndex(0);
                         FieldList fieldList = instrumentedType.getDeclaredFields();
                         StackManipulation[] fieldLoading = new StackManipulation[fieldList.size()];
                         int index = 0;
@@ -581,7 +581,7 @@ public @interface Pipe {
                         }
                         StackManipulation.Size stackSize = new StackManipulation.Compound(
                                 MethodVariableAccess.REFERENCE.loadFromIndex(1),
-                                assigner.assign(new TypeDescription.ForLoadedType(Object.class), redirectedMethod.getDeclaringType(), true),
+                                assigner.assign(new TypeDescription.ForLoadedType(Object.class), redirectedMethod.getDeclaringElement(), true),
                                 new StackManipulation.Compound(fieldLoading),
                                 MethodInvocation.invoke(redirectedMethod),
                                 assigner.assign(redirectedMethod.getReturnType(), instrumentedMethod.getReturnType(), true),

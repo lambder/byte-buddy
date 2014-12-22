@@ -46,8 +46,8 @@ public class RebaseInstrumentationTargetTest extends AbstractInstrumentationTarg
     @Before
     public void setUp() throws Exception {
         when(instrumentedType.getInternalName()).thenReturn(BAR);
-        when(targetRebaseMethod.getDeclaringType()).thenReturn(instrumentedType);
-        when(rebasedMethod.getDeclaringType()).thenReturn(instrumentedType);
+        when(targetRebaseMethod.getDeclaringElement()).thenReturn(instrumentedType);
+        when(rebasedMethod.getDeclaringElement()).thenReturn(instrumentedType);
         when(methodRebaseResolver.resolve(targetRebaseMethod)).thenReturn(rebasedResolution);
         when(rebasedResolution.isRebased()).thenReturn(true);
         when(rebasedResolution.getResolvedMethod()).thenReturn(rebasedMethod);
@@ -62,12 +62,12 @@ public class RebaseInstrumentationTargetTest extends AbstractInstrumentationTarg
         when(instrumentedType.getSupertype()).thenReturn(superType);
         when(superType.getInternalName()).thenReturn(QUX);
         when(superType.getStackSize()).thenReturn(StackSize.ZERO);
-        when(superMethod.getDeclaringType()).thenReturn(superType);
+        when(superMethod.getDeclaringElement()).thenReturn(superType);
         when(superMethod.getReturnType()).thenReturn(returnType);
         when(superMethod.getInternalName()).thenReturn(BAZ);
         when(superMethod.getDescriptor()).thenReturn(FOOBAR);
         when(superMethod.getParameterTypes()).thenReturn(parameterTypes);
-        when(nonRebasedMethod.getDeclaringType()).thenReturn(instrumentedType);
+        when(nonRebasedMethod.getDeclaringElement()).thenReturn(instrumentedType);
         when(nonRebasedMethod.getReturnType()).thenReturn(returnType);
         when(nonRebasedMethod.getInternalName()).thenReturn(BAZ);
         when(nonRebasedMethod.getDescriptor()).thenReturn(FOOBAR);

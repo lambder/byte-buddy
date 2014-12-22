@@ -128,11 +128,11 @@ public abstract class AbstractMethodDescriptionTest {
 
     @Test
     public void testMethodDeclaringType() throws Exception {
-        assertThat(describe(firstMethod).getDeclaringType(), is((TypeDescription) new TypeDescription.ForLoadedType(firstMethod.getDeclaringClass())));
-        assertThat(describe(secondMethod).getDeclaringType(), is((TypeDescription) new TypeDescription.ForLoadedType(secondMethod.getDeclaringClass())));
-        assertThat(describe(thirdMethod).getDeclaringType(), is((TypeDescription) new TypeDescription.ForLoadedType(thirdMethod.getDeclaringClass())));
-        assertThat(describe(firstConstructor).getDeclaringType(), is((TypeDescription) new TypeDescription.ForLoadedType(firstConstructor.getDeclaringClass())));
-        assertThat(describe(secondConstructor).getDeclaringType(), is((TypeDescription) new TypeDescription.ForLoadedType(secondConstructor.getDeclaringClass())));
+        assertThat(describe(firstMethod).getDeclaringElement(), is((TypeDescription) new TypeDescription.ForLoadedType(firstMethod.getDeclaringClass())));
+        assertThat(describe(secondMethod).getDeclaringElement(), is((TypeDescription) new TypeDescription.ForLoadedType(secondMethod.getDeclaringClass())));
+        assertThat(describe(thirdMethod).getDeclaringElement(), is((TypeDescription) new TypeDescription.ForLoadedType(thirdMethod.getDeclaringClass())));
+        assertThat(describe(firstConstructor).getDeclaringElement(), is((TypeDescription) new TypeDescription.ForLoadedType(firstConstructor.getDeclaringClass())));
+        assertThat(describe(secondConstructor).getDeclaringElement(), is((TypeDescription) new TypeDescription.ForLoadedType(secondConstructor.getDeclaringClass())));
     }
 
     @Test
@@ -168,31 +168,31 @@ public abstract class AbstractMethodDescriptionTest {
         assertThat(describe(firstMethod), not(equalTo((MethodDescription) new MethodDescription.ForLoadedConstructor(secondConstructor))));
         MethodDescription equalMethod = mock(MethodDescription.class);
         when(equalMethod.getInternalName()).thenReturn(firstMethod.getName());
-        when(equalMethod.getDeclaringType()).thenReturn(new TypeDescription.ForLoadedType(firstMethod.getDeclaringClass()));
+        when(equalMethod.getDeclaringElement()).thenReturn(new TypeDescription.ForLoadedType(firstMethod.getDeclaringClass()));
         when(equalMethod.getReturnType()).thenReturn(new TypeDescription.ForLoadedType(firstMethod.getReturnType()));
         when(equalMethod.getParameterTypes()).thenReturn(new TypeList.ForLoadedType(firstMethod.getParameterTypes()));
         assertThat(describe(firstMethod), equalTo(equalMethod));
         MethodDescription equalMethodButName = mock(MethodDescription.class);
         when(equalMethodButName.getInternalName()).thenReturn(secondMethod.getName());
-        when(equalMethodButName.getDeclaringType()).thenReturn(new TypeDescription.ForLoadedType(firstMethod.getDeclaringClass()));
+        when(equalMethodButName.getDeclaringElement()).thenReturn(new TypeDescription.ForLoadedType(firstMethod.getDeclaringClass()));
         when(equalMethodButName.getReturnType()).thenReturn(new TypeDescription.ForLoadedType(firstMethod.getReturnType()));
         when(equalMethodButName.getParameterTypes()).thenReturn(new TypeList.ForLoadedType(firstMethod.getParameterTypes()));
         assertThat(describe(firstMethod), not(equalTo(equalMethodButName)));
         MethodDescription equalMethodButReturnType = mock(MethodDescription.class);
         when(equalMethodButReturnType.getInternalName()).thenReturn(firstMethod.getName());
-        when(equalMethodButReturnType.getDeclaringType()).thenReturn(new TypeDescription.ForLoadedType(Object.class));
+        when(equalMethodButReturnType.getDeclaringElement()).thenReturn(new TypeDescription.ForLoadedType(Object.class));
         when(equalMethodButReturnType.getReturnType()).thenReturn(new TypeDescription.ForLoadedType(firstMethod.getReturnType()));
         when(equalMethodButReturnType.getParameterTypes()).thenReturn(new TypeList.ForLoadedType(firstMethod.getParameterTypes()));
         assertThat(describe(firstMethod), not(equalTo(equalMethodButReturnType)));
         MethodDescription equalMethodButDeclaringType = mock(MethodDescription.class);
         when(equalMethodButDeclaringType.getInternalName()).thenReturn(firstMethod.getName());
-        when(equalMethodButDeclaringType.getDeclaringType()).thenReturn(new TypeDescription.ForLoadedType(firstMethod.getDeclaringClass()));
+        when(equalMethodButDeclaringType.getDeclaringElement()).thenReturn(new TypeDescription.ForLoadedType(firstMethod.getDeclaringClass()));
         when(equalMethodButDeclaringType.getReturnType()).thenReturn(new TypeDescription.ForLoadedType(secondMethod.getReturnType()));
         when(equalMethodButDeclaringType.getParameterTypes()).thenReturn(new TypeList.ForLoadedType(firstMethod.getParameterTypes()));
         assertThat(describe(firstMethod), not(equalTo(equalMethodButDeclaringType)));
         MethodDescription equalMethodButParameterTypes = mock(MethodDescription.class);
         when(equalMethodButParameterTypes.getInternalName()).thenReturn(firstMethod.getName());
-        when(equalMethodButParameterTypes.getDeclaringType()).thenReturn(new TypeDescription.ForLoadedType(firstMethod.getDeclaringClass()));
+        when(equalMethodButParameterTypes.getDeclaringElement()).thenReturn(new TypeDescription.ForLoadedType(firstMethod.getDeclaringClass()));
         when(equalMethodButParameterTypes.getReturnType()).thenReturn(new TypeDescription.ForLoadedType(firstMethod.getReturnType()));
         when(equalMethodButParameterTypes.getParameterTypes()).thenReturn(new TypeList.ForLoadedType(secondMethod.getParameterTypes()));
         assertThat(describe(firstMethod), not(equalTo(equalMethodButParameterTypes)));
@@ -216,31 +216,31 @@ public abstract class AbstractMethodDescriptionTest {
         assertThat(describe(firstConstructor), not(equalTo((MethodDescription) new MethodDescription.ForLoadedMethod(thirdMethod))));
         MethodDescription equalMethod = mock(MethodDescription.class);
         when(equalMethod.getInternalName()).thenReturn(MethodDescription.CONSTRUCTOR_INTERNAL_NAME);
-        when(equalMethod.getDeclaringType()).thenReturn(new TypeDescription.ForLoadedType(firstConstructor.getDeclaringClass()));
+        when(equalMethod.getDeclaringElement()).thenReturn(new TypeDescription.ForLoadedType(firstConstructor.getDeclaringClass()));
         when(equalMethod.getReturnType()).thenReturn(new TypeDescription.ForLoadedType(void.class));
         when(equalMethod.getParameterTypes()).thenReturn(new TypeList.ForLoadedType(firstConstructor.getParameterTypes()));
         assertThat(describe(firstConstructor), equalTo(equalMethod));
         MethodDescription equalMethodButName = mock(MethodDescription.class);
         when(equalMethodButName.getInternalName()).thenReturn(firstMethod.getName());
-        when(equalMethodButName.getDeclaringType()).thenReturn(new TypeDescription.ForLoadedType(firstConstructor.getDeclaringClass()));
+        when(equalMethodButName.getDeclaringElement()).thenReturn(new TypeDescription.ForLoadedType(firstConstructor.getDeclaringClass()));
         when(equalMethodButName.getReturnType()).thenReturn(new TypeDescription.ForLoadedType(void.class));
         when(equalMethodButName.getParameterTypes()).thenReturn(new TypeList.ForLoadedType(firstConstructor.getParameterTypes()));
         assertThat(describe(firstConstructor), not(equalTo(equalMethodButName)));
         MethodDescription equalMethodButReturnType = mock(MethodDescription.class);
         when(equalMethodButReturnType.getInternalName()).thenReturn(MethodDescription.CONSTRUCTOR_INTERNAL_NAME);
-        when(equalMethodButReturnType.getDeclaringType()).thenReturn(new TypeDescription.ForLoadedType(Object.class));
+        when(equalMethodButReturnType.getDeclaringElement()).thenReturn(new TypeDescription.ForLoadedType(Object.class));
         when(equalMethodButReturnType.getReturnType()).thenReturn(new TypeDescription.ForLoadedType(void.class));
         when(equalMethodButReturnType.getParameterTypes()).thenReturn(new TypeList.ForLoadedType(firstConstructor.getParameterTypes()));
         assertThat(describe(firstConstructor), not(equalTo(equalMethodButReturnType)));
         MethodDescription equalMethodButDeclaringType = mock(MethodDescription.class);
         when(equalMethodButDeclaringType.getInternalName()).thenReturn(MethodDescription.CONSTRUCTOR_INTERNAL_NAME);
-        when(equalMethodButDeclaringType.getDeclaringType()).thenReturn(new TypeDescription.ForLoadedType(firstConstructor.getDeclaringClass()));
+        when(equalMethodButDeclaringType.getDeclaringElement()).thenReturn(new TypeDescription.ForLoadedType(firstConstructor.getDeclaringClass()));
         when(equalMethodButDeclaringType.getReturnType()).thenReturn(new TypeDescription.ForLoadedType(Object.class));
         when(equalMethodButDeclaringType.getParameterTypes()).thenReturn(new TypeList.ForLoadedType(firstConstructor.getParameterTypes()));
         assertThat(describe(firstConstructor), not(equalTo(equalMethodButDeclaringType)));
         MethodDescription equalMethodButParameterTypes = mock(MethodDescription.class);
         when(equalMethodButParameterTypes.getInternalName()).thenReturn(MethodDescription.CONSTRUCTOR_INTERNAL_NAME);
-        when(equalMethodButParameterTypes.getDeclaringType()).thenReturn(new TypeDescription.ForLoadedType(firstConstructor.getDeclaringClass()));
+        when(equalMethodButParameterTypes.getDeclaringElement()).thenReturn(new TypeDescription.ForLoadedType(firstConstructor.getDeclaringClass()));
         when(equalMethodButParameterTypes.getReturnType()).thenReturn(new TypeDescription.ForLoadedType(void.class));
         when(equalMethodButParameterTypes.getParameterTypes()).thenReturn(new TypeList.ForLoadedType(secondConstructor.getParameterTypes()));
         assertThat(describe(firstConstructor), not(equalTo(equalMethodButParameterTypes)));

@@ -41,14 +41,14 @@ public class MorphBinderTest extends AbstractAnnotationBinderTest<Morph> {
     @Test(expected = IllegalStateException.class)
     public void testIllegalType() throws Exception {
         when(targetTypeList.get(INDEX)).thenReturn(morphType);
-        when(morphMethod.getDeclaringType()).thenReturn(mock(TypeDescription.class));
+        when(morphMethod.getDeclaringElement()).thenReturn(mock(TypeDescription.class));
         new Morph.Binder(morphMethod).bind(annotationDescription, 0, source, target, instrumentationTarget, assigner);
     }
 
     @Test
     public void testSuperMethodCallInvalid() throws Exception {
         when(targetTypeList.get(INDEX)).thenReturn(morphType);
-        when(morphMethod.getDeclaringType()).thenReturn(morphType);
+        when(morphMethod.getDeclaringElement()).thenReturn(morphType);
         doReturn(void.class).when(annotation).defaultTarget();
         when(instrumentationTarget.invokeSuper(source, Instrumentation.Target.MethodLookup.Default.EXACT))
                 .thenReturn(specialMethodInvocation);
@@ -61,7 +61,7 @@ public class MorphBinderTest extends AbstractAnnotationBinderTest<Morph> {
     @Test
     public void testSuperMethodCallValid() throws Exception {
         when(targetTypeList.get(INDEX)).thenReturn(morphType);
-        when(morphMethod.getDeclaringType()).thenReturn(morphType);
+        when(morphMethod.getDeclaringElement()).thenReturn(morphType);
         doReturn(void.class).when(annotation).defaultTarget();
         when(instrumentationTarget.invokeSuper(source, Instrumentation.Target.MethodLookup.Default.EXACT))
                 .thenReturn(specialMethodInvocation);
@@ -77,7 +77,7 @@ public class MorphBinderTest extends AbstractAnnotationBinderTest<Morph> {
         when(source.getUniqueSignature()).thenReturn(FOO);
         when(instrumentedType.getInterfaces()).thenReturn(new TypeList.ForLoadedType(Foo.class));
         when(targetTypeList.get(INDEX)).thenReturn(morphType);
-        when(morphMethod.getDeclaringType()).thenReturn(morphType);
+        when(morphMethod.getDeclaringElement()).thenReturn(morphType);
         when(annotation.defaultMethod()).thenReturn(true);
         doReturn(void.class).when(annotation).defaultTarget();
         when(source.isSpecializableFor(new TypeDescription.ForLoadedType(Foo.class))).thenReturn(true);
@@ -94,7 +94,7 @@ public class MorphBinderTest extends AbstractAnnotationBinderTest<Morph> {
         when(source.getUniqueSignature()).thenReturn(FOO);
         when(instrumentedType.getInterfaces()).thenReturn(new TypeList.ForLoadedType(Foo.class));
         when(targetTypeList.get(INDEX)).thenReturn(morphType);
-        when(morphMethod.getDeclaringType()).thenReturn(morphType);
+        when(morphMethod.getDeclaringElement()).thenReturn(morphType);
         when(annotation.defaultMethod()).thenReturn(true);
         doReturn(void.class).when(annotation).defaultTarget();
         when(source.isSpecializableFor(new TypeDescription.ForLoadedType(Foo.class))).thenReturn(true);
@@ -112,7 +112,7 @@ public class MorphBinderTest extends AbstractAnnotationBinderTest<Morph> {
         when(source.getUniqueSignature()).thenReturn(FOO);
         when(instrumentedType.getInterfaces()).thenReturn(new TypeList.ForLoadedType(Foo.class));
         when(targetTypeList.get(INDEX)).thenReturn(morphType);
-        when(morphMethod.getDeclaringType()).thenReturn(morphType);
+        when(morphMethod.getDeclaringElement()).thenReturn(morphType);
         when(annotation.defaultMethod()).thenReturn(true);
         doReturn(Foo.class).when(annotation).defaultTarget();
         when(instrumentationTarget.invokeDefault(new TypeDescription.ForLoadedType(Foo.class), FOO))
@@ -128,7 +128,7 @@ public class MorphBinderTest extends AbstractAnnotationBinderTest<Morph> {
         when(source.getUniqueSignature()).thenReturn(FOO);
         when(instrumentedType.getInterfaces()).thenReturn(new TypeList.ForLoadedType(Foo.class));
         when(targetTypeList.get(INDEX)).thenReturn(morphType);
-        when(morphMethod.getDeclaringType()).thenReturn(morphType);
+        when(morphMethod.getDeclaringElement()).thenReturn(morphType);
         when(annotation.defaultMethod()).thenReturn(true);
         doReturn(Foo.class).when(annotation).defaultTarget();
         when(instrumentationTarget.invokeDefault(new TypeDescription.ForLoadedType(Foo.class), FOO))

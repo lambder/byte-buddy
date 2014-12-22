@@ -45,7 +45,7 @@ public class MethodRebaseResolverDefaultTest {
 
     @Before
     public void setUp() throws Exception {
-        when(methodDescription.getDeclaringType()).thenReturn(instrumentedType);
+        when(methodDescription.getDeclaringElement()).thenReturn(instrumentedType);
         when(methodDescription.getParameterTypes()).thenReturn(new TypeList.Empty());
         when(methodDescription.getReturnType()).thenReturn(returnType);
         when(methodDescription.getInternalName()).thenReturn(FOO);
@@ -59,7 +59,7 @@ public class MethodRebaseResolverDefaultTest {
         assertThat(resolution.isRebased(), is(true));
         assertThat(resolution.getResolvedMethod().getInternalName(), is(BAR));
         assertThat(resolution.getResolvedMethod().getModifiers(), is(MethodRebaseResolver.REBASED_METHOD_MODIFIER));
-        assertThat(resolution.getResolvedMethod().getDeclaringType(), is(instrumentedType));
+        assertThat(resolution.getResolvedMethod().getDeclaringElement(), is(instrumentedType));
         assertThat(resolution.getResolvedMethod().getParameterTypes(), is((TypeList) new TypeList.Empty()));
         assertThat(resolution.getResolvedMethod().getReturnType(), is(returnType));
         assertThat(resolution.getAdditionalArguments().isValid(), is(true));
@@ -78,7 +78,7 @@ public class MethodRebaseResolverDefaultTest {
         assertThat(resolution.isRebased(), is(true));
         assertThat(resolution.getResolvedMethod().getInternalName(), is(BAR));
         assertThat(resolution.getResolvedMethod().getModifiers(), is(MethodRebaseResolver.REBASED_METHOD_MODIFIER | Opcodes.ACC_STATIC));
-        assertThat(resolution.getResolvedMethod().getDeclaringType(), is(instrumentedType));
+        assertThat(resolution.getResolvedMethod().getDeclaringElement(), is(instrumentedType));
         assertThat(resolution.getResolvedMethod().getParameterTypes(), is((TypeList) new TypeList.Empty()));
         assertThat(resolution.getResolvedMethod().getReturnType(), is(returnType));
         assertThat(resolution.getAdditionalArguments().isValid(), is(true));
@@ -97,7 +97,7 @@ public class MethodRebaseResolverDefaultTest {
         assertThat(resolution.isRebased(), is(true));
         assertThat(resolution.getResolvedMethod().getInternalName(), is(BAR));
         assertThat(resolution.getResolvedMethod().getModifiers(), is(MethodRebaseResolver.REBASED_METHOD_MODIFIER | Opcodes.ACC_NATIVE));
-        assertThat(resolution.getResolvedMethod().getDeclaringType(), is(instrumentedType));
+        assertThat(resolution.getResolvedMethod().getDeclaringElement(), is(instrumentedType));
         assertThat(resolution.getResolvedMethod().getParameterTypes(), is((TypeList) new TypeList.Empty()));
         assertThat(resolution.getResolvedMethod().getReturnType(), is(returnType));
         assertThat(resolution.getAdditionalArguments().isValid(), is(true));
@@ -117,7 +117,7 @@ public class MethodRebaseResolverDefaultTest {
         assertThat(resolution.isRebased(), is(true));
         assertThat(resolution.getResolvedMethod().getInternalName(), is(BAR));
         assertThat(resolution.getResolvedMethod().getModifiers(), is(MethodRebaseResolver.REBASED_METHOD_MODIFIER | Opcodes.ACC_NATIVE | Opcodes.ACC_STATIC));
-        assertThat(resolution.getResolvedMethod().getDeclaringType(), is(instrumentedType));
+        assertThat(resolution.getResolvedMethod().getDeclaringElement(), is(instrumentedType));
         assertThat(resolution.getResolvedMethod().getParameterTypes(), is((TypeList) new TypeList.Empty()));
         assertThat(resolution.getResolvedMethod().getReturnType(), is(returnType));
         assertThat(resolution.getAdditionalArguments().isValid(), is(true));
@@ -136,7 +136,7 @@ public class MethodRebaseResolverDefaultTest {
         assertThat(resolution.isRebased(), is(true));
         assertThat(resolution.getResolvedMethod().getInternalName(), is(FOO));
         assertThat(resolution.getResolvedMethod().getModifiers(), is(MethodRebaseResolver.REBASED_METHOD_MODIFIER));
-        assertThat(resolution.getResolvedMethod().getDeclaringType(), is(instrumentedType));
+        assertThat(resolution.getResolvedMethod().getDeclaringElement(), is(instrumentedType));
         assertThat(resolution.getResolvedMethod().getParameterTypes(), is((TypeList) new TypeList.Explicit(Arrays.asList(placeholderType))));
         assertThat(resolution.getResolvedMethod().getReturnType(), is(returnType));
         assertThat(resolution.getAdditionalArguments().isValid(), is(true));

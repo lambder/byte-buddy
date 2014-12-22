@@ -65,8 +65,8 @@ public abstract class AbstractFieldDescriptionTest {
 
     @Test
     public void testFieldDeclaringType() throws Exception {
-        assertThat(describe(first).getDeclaringType(), is((TypeDescription) new TypeDescription.ForLoadedType(first.getDeclaringClass())));
-        assertThat(describe(second).getDeclaringType(), is((TypeDescription) new TypeDescription.ForLoadedType(second.getDeclaringClass())));
+        assertThat(describe(first).getDeclaringElement(), is((TypeDescription) new TypeDescription.ForLoadedType(first.getDeclaringClass())));
+        assertThat(describe(second).getDeclaringElement(), is((TypeDescription) new TypeDescription.ForLoadedType(second.getDeclaringClass())));
     }
 
     @Test
@@ -84,19 +84,19 @@ public abstract class AbstractFieldDescriptionTest {
         assertThat(identical, equalTo(identical));
         FieldDescription equalFirst = mock(FieldDescription.class);
         when(equalFirst.getName()).thenReturn(first.getName());
-        when(equalFirst.getDeclaringType()).thenReturn(new TypeDescription.ForLoadedType(FirstSample.class));
+        when(equalFirst.getDeclaringElement()).thenReturn(new TypeDescription.ForLoadedType(FirstSample.class));
         assertThat(describe(first), equalTo(equalFirst));
         FieldDescription equalSecond = mock(FieldDescription.class);
         when(equalSecond.getName()).thenReturn(second.getName());
-        when(equalSecond.getDeclaringType()).thenReturn(new TypeDescription.ForLoadedType(SecondSample.class));
+        when(equalSecond.getDeclaringElement()).thenReturn(new TypeDescription.ForLoadedType(SecondSample.class));
         assertThat(describe(second), equalTo(equalSecond));
         FieldDescription equalFirstTypeOnly = mock(FieldDescription.class);
         when(equalFirstTypeOnly.getName()).thenReturn(second.getName());
-        when(equalFirstTypeOnly.getDeclaringType()).thenReturn(new TypeDescription.ForLoadedType(FirstSample.class));
+        when(equalFirstTypeOnly.getDeclaringElement()).thenReturn(new TypeDescription.ForLoadedType(FirstSample.class));
         assertThat(describe(first), not(equalTo(equalFirstTypeOnly)));
         FieldDescription equalFirstNameOnly = mock(FieldDescription.class);
         when(equalFirstNameOnly.getName()).thenReturn(first.getName());
-        when(equalFirstNameOnly.getDeclaringType()).thenReturn(new TypeDescription.ForLoadedType(SecondSample.class));
+        when(equalFirstNameOnly.getDeclaringElement()).thenReturn(new TypeDescription.ForLoadedType(SecondSample.class));
         assertThat(describe(first), not(equalTo(equalFirstNameOnly)));
         assertThat(describe(first), not(equalTo(equalSecond)));
         assertThat(describe(first), not(equalTo(new Object())));

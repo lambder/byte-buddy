@@ -169,7 +169,7 @@ public enum FieldAccess {
             @Override
             public Size apply(MethodVisitor methodVisitor, Instrumentation.Context instrumentationContext) {
                 methodVisitor.visitFieldInsn(getOpcode(),
-                        fieldDescription.getDeclaringType().getInternalName(),
+                        fieldDescription.getDeclaringElement().getInternalName(),
                         fieldDescription.getInternalName(),
                         fieldDescription.getDescriptor());
                 return resolveSize(fieldDescription.getFieldType().getStackSize());

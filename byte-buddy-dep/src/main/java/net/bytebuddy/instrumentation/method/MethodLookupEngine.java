@@ -262,8 +262,8 @@ public interface MethodLookupEngine {
         }
 
         @Override
-        public TypeDescription getDeclaringType() {
-            return methodChain.get(MOST_SPECIFIC).getDeclaringType();
+        public TypeDescription getDeclaringElement() {
+            return methodChain.get(MOST_SPECIFIC).getDeclaringElement();
         }
 
         @Override
@@ -281,7 +281,7 @@ public interface MethodLookupEngine {
             for (MethodDescription methodDescription : methodChain) {
                 if (methodDescription.isSpecializableFor(targetType)) {
                     return true;
-                } else if (methodDescription.getDeclaringType().isAssignableFrom(targetType)) {
+                } else if (methodDescription.getDeclaringElement().isAssignableFrom(targetType)) {
                     return false;
                 }
             }
@@ -363,7 +363,7 @@ public interface MethodLookupEngine {
                 List<MethodDescription> known = ((ConflictingInterfaceMethod) conflictingMethod).methodDescriptions;
                 methodDescriptions = new ArrayList<MethodDescription>(known.size() + 1);
                 for (MethodDescription methodDescription : known) {
-                    if (!methodDescription.getDeclaringType().isAssignableFrom(discoveredMethod.getDeclaringType())) {
+                    if (!methodDescription.getDeclaringElement().isAssignableFrom(discoveredMethod.getDeclaringElement())) {
                         methodDescriptions.add(methodDescription);
                     }
                 }
@@ -430,7 +430,7 @@ public interface MethodLookupEngine {
         }
 
         @Override
-        public TypeDescription getDeclaringType() {
+        public TypeDescription getDeclaringElement() {
             return virtualHost;
         }
 
@@ -443,7 +443,7 @@ public interface MethodLookupEngine {
         public boolean isSpecializableFor(TypeDescription targetType) {
             MethodDescription invokableMethod = null;
             for (MethodDescription methodDescription : methodDescriptions) {
-                if (!methodDescription.isAbstract() && methodDescription.getDeclaringType().isAssignableFrom(targetType)) {
+                if (!methodDescription.isAbstract() && methodDescription.getDeclaringElement().isAssignableFrom(targetType)) {
                     if (invokableMethod == null) {
                         invokableMethod = methodDescription;
                     } else {
@@ -774,7 +774,7 @@ public interface MethodLookupEngine {
                         if (locallyProcessedMethods.add(uniqueSignature)) {
                             MethodDescription conflictingMethod = interfaceMethods.get(uniqueSignature);
                             MethodDescription resolvedMethod = methodDescription;
-                            if (conflictingMethod != null && !conflictingMethod.getDeclaringType().isAssignableFrom(typeDescription)) {
+                            if (conflictingMethod != null && !conflictingMethod.getDeclaringElement().isAssignableFrom(typeDescription)) {
                                 resolvedMethod = ConflictingInterfaceMethod.of(typeOfInterest, conflictingMethod, methodDescription);
                             }
                             interfaceMethods.put(uniqueSignature, resolvedMethod);
@@ -935,9 +935,9 @@ public interface MethodLookupEngine {
 
                     @Override
                     public void register(MethodDescription methodDescription) {
-                        methodDeclarations.get(methodDescription.getDeclaringType()).add(methodDescription.getUniqueSignature());
+                        methodDeclarations.get(methodDescription.getDeclaringElement()).add(methodDescription.getUniqueSignature());
                         if (methodDescription.isDefaultMethod()) {
-                            defaultMethods.get(methodDescription.getDeclaringType()).add(methodDescription);
+                            defaultMethods.get(methodDescription.getDeclaringElement()).add(methodDescription);
                         }
                     }
 

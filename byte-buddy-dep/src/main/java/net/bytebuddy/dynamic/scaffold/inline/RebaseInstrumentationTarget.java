@@ -42,7 +42,7 @@ public class RebaseInstrumentationTarget extends Instrumentation.Target.Abstract
 
     @Override
     protected Instrumentation.SpecialMethodInvocation invokeSuper(MethodDescription methodDescription) {
-        return methodDescription.getDeclaringType().equals(typeDescription)
+        return methodDescription.getDeclaringElement().equals(typeDescription)
                 ? invokeSuper(methodRebaseResolver.resolve(methodDescription))
                 : Instrumentation.SpecialMethodInvocation.Simple.of(methodDescription, typeDescription.getSupertype());
     }

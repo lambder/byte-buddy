@@ -150,13 +150,13 @@ public class InstrumentationContextDefaultTest {
         when(firstField.getName()).thenReturn(FOO);
         when(firstField.getInternalName()).thenReturn(FOO);
         when(firstField.getDescriptor()).thenReturn(BAR);
-        when(firstField.getDeclaringType()).thenReturn(firstFieldDeclaringType);
+        when(firstField.getDeclaringElement()).thenReturn(firstFieldDeclaringType);
         when(firstFieldDeclaringType.getInternalName()).thenReturn(QUX);
         when(secondField.getFieldType()).thenReturn(secondFieldType);
         when(secondField.getName()).thenReturn(BAR);
         when(secondField.getInternalName()).thenReturn(BAR);
         when(secondField.getDescriptor()).thenReturn(FOO);
-        when(secondField.getDeclaringType()).thenReturn(secondFieldDeclaringType);
+        when(secondField.getDeclaringElement()).thenReturn(secondFieldDeclaringType);
         when(secondFieldDeclaringType.getInternalName()).thenReturn(BAZ);
     }
 

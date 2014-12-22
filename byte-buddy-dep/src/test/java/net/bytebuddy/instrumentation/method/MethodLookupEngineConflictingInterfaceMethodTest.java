@@ -31,9 +31,9 @@ public class MethodLookupEngineConflictingInterfaceMethodTest {
 
     @Before
     public void setUp() throws Exception {
-        when(first.getDeclaringType()).thenReturn(firstType);
-        when(second.getDeclaringType()).thenReturn(secondType);
-        when(third.getDeclaringType()).thenReturn(thirdType);
+        when(first.getDeclaringElement()).thenReturn(firstType);
+        when(second.getDeclaringElement()).thenReturn(secondType);
+        when(third.getDeclaringElement()).thenReturn(thirdType);
         knownMethods = MethodLookupEngine.ConflictingInterfaceMethod.class.getDeclaredField("methodDescriptions");
         knownMethods.setAccessible(true);
     }

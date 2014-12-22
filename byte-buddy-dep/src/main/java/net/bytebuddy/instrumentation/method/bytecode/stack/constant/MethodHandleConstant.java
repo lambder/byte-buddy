@@ -56,7 +56,7 @@ public class MethodHandleConstant implements StackManipulation {
      */
     public static StackManipulation of(MethodDescription methodDescription) {
         return new MethodHandleConstant(new Handle(tagFor(methodDescription),
-                methodDescription.getDeclaringType().getInternalName(),
+                methodDescription.getDeclaringElement().getInternalName(),
                 methodDescription.getInternalName(),
                 methodDescription.getDescriptor()));
     }
@@ -110,7 +110,7 @@ public class MethodHandleConstant implements StackManipulation {
      */
     private static StackManipulation of(FieldDescription fieldDescription, int tag) {
         return new MethodHandleConstant(new Handle(tag,
-                fieldDescription.getDeclaringType().getInternalName(),
+                fieldDescription.getDeclaringElement().getInternalName(),
                 fieldDescription.getInternalName(),
                 fieldDescription.getDescriptor()));
     }

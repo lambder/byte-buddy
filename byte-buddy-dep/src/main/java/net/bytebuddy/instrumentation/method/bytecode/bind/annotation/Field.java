@@ -218,9 +218,9 @@ public @interface Field {
                                                                Assigner assigner) {
             TypeDescription parameterType = target.getParameterTypes().get(targetParameterIndex);
             AccessType accessType;
-            if (parameterType.equals(getterMethod.getDeclaringType())) {
+            if (parameterType.equals(getterMethod.getDeclaringElement())) {
                 accessType = AccessType.GETTER;
-            } else if (parameterType.equals(setterMethod.getDeclaringType())) {
+            } else if (parameterType.equals(setterMethod.getDeclaringElement())) {
                 accessType = AccessType.SETTER;
             } else {
                 throw new IllegalStateException(target + " uses a @Field annotation on an non-installed type");
@@ -309,7 +309,7 @@ public @interface Field {
             GETTER {
                 @Override
                 protected TypeDescription proxyType(MethodDescription getterMethod, MethodDescription setterMethod) {
-                    return getterMethod.getDeclaringType();
+                    return getterMethod.getDeclaringElement();
                 }
 
                 @Override
@@ -326,7 +326,7 @@ public @interface Field {
             SETTER {
                 @Override
                 protected TypeDescription proxyType(MethodDescription getterMethod, MethodDescription setterMethod) {
-                    return setterMethod.getDeclaringType();
+                    return setterMethod.getDeclaringElement();
                 }
 
                 @Override

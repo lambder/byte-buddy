@@ -388,7 +388,7 @@ public interface AnnotationDescription {
 
         @Override
         public Object getValue(MethodDescription methodDescription) {
-            if (!methodDescription.getDeclaringType().represents(annotation.annotationType())) {
+            if (!methodDescription.getDeclaringElement().represents(annotation.annotationType())) {
                 throw new IllegalArgumentException(methodDescription + " does not represent " + annotation.annotationType());
             }
             try {

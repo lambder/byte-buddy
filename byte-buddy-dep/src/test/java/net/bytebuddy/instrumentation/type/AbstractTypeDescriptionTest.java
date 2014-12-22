@@ -148,11 +148,11 @@ public abstract class AbstractTypeDescriptionTest {
 
     @Test
     public void testDeclaringType() throws Exception {
-        assertThat(describe(SampleClass.class).getDeclaringType(),
+        assertThat(describe(SampleClass.class).getDeclaringElement(),
                 is((TypeDescription) new TypeDescription.ForLoadedType(AbstractTypeDescriptionTest.class)));
-        assertThat(describe(Object.class).getDeclaringType(), nullValue(TypeDescription.class));
-        assertThat(describe(Object[].class).getDeclaringType(), nullValue(TypeDescription.class));
-        assertThat(describe(void.class).getDeclaringType(), nullValue(TypeDescription.class));
+        assertThat(describe(Object.class).getDeclaringElement(), nullValue(TypeDescription.class));
+        assertThat(describe(Object[].class).getDeclaringElement(), nullValue(TypeDescription.class));
+        assertThat(describe(void.class).getDeclaringElement(), nullValue(TypeDescription.class));
     }
 
     @Test

@@ -59,7 +59,7 @@ public enum MethodInvocation {
             return STATIC.new Invocation(methodDescription);
         } else if (methodDescription.isPrivate() || methodDescription.isConstructor() || methodDescription.isDefaultMethod()) {
             return SPECIAL.new Invocation(methodDescription);
-        } else if (methodDescription.getDeclaringType().isInterface()) { // Check this property last, default methods must be called by INVOKESPECIAL
+        } else if (methodDescription.getDeclaringElement().isInterface()) { // Check this property last, default methods must be called by INVOKESPECIAL
             return INTERFACE.new Invocation(methodDescription);
         } else {
             return VIRTUAL.new Invocation(methodDescription);
@@ -141,7 +141,7 @@ public enum MethodInvocation {
          * @param methodDescription The method to be invoked.
          */
         protected Invocation(MethodDescription methodDescription) {
-            this(methodDescription, methodDescription.getDeclaringType());
+            this(methodDescription, methodDescription.getDeclaringElement());
         }
 
         /**

@@ -42,7 +42,7 @@ public class SubclassInstrumentationTargetTest extends AbstractInstrumentationTa
         when(instrumentedType.getSupertype()).thenReturn(superType);
         when(superType.getDeclaredMethods()).thenReturn(new MethodList.Explicit(Arrays.asList(superMethodConstructor)));
         when(superType.getInternalName()).thenReturn(BAR);
-        when(superMethod.getDeclaringType()).thenReturn(superType);
+        when(superMethod.getDeclaringElement()).thenReturn(superType);
         when(superType.getStackSize()).thenReturn(StackSize.ZERO);
         when(superMethod.getReturnType()).thenReturn(returnType);
         when(superMethod.getInternalName()).thenReturn(BAZ);

@@ -47,7 +47,7 @@ public class MethodBindingBuilderTest {
         when(methodDescription.getParameterTypes()).thenReturn(methodParameterList);
         when(methodDescription.isStatic()).thenReturn(false);
         TypeDescription declaringType = mock(TypeDescription.class);
-        when(methodDescription.getDeclaringType()).thenReturn(declaringType);
+        when(methodDescription.getDeclaringElement()).thenReturn(declaringType);
         when(declaringType.getInternalName()).thenReturn(FOO);
         when(declaringType.isInterface()).thenReturn(false);
         when(methodDescription.getInternalName()).thenReturn(BAR);

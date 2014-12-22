@@ -240,7 +240,7 @@ public class MethodLookupEngineDefaultTest {
                 + 1));
         MethodDescription conflictMethod = finding.getInvokableMethods().filter(named(FOO)).getOnly();
         assertEquals(MethodLookupEngine.ConflictingInterfaceMethod.class, conflictMethod.getClass());
-        assertThat(conflictMethod.getDeclaringType(), is(conflictingInterfaceClass));
+        assertThat(conflictMethod.getDeclaringElement(), is(conflictingInterfaceClass));
         assertThat(finding.getInvokableDefaultMethods().size(), is(2));
         assertThat(finding.getInvokableDefaultMethods().get(new TypeDescription.ForLoadedType(SingleMethodInterface.class)).size(), is(0));
         assertThat(finding.getInvokableDefaultMethods().get(new TypeDescription.ForLoadedType(ConflictingSingleMethodInterface.class)).size(), is(0));

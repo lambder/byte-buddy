@@ -100,7 +100,7 @@ public class MethodSortMatcher<T extends MethodDescription> extends ElementMatch
         VISIBILITY_BRIDGE("isVisibilityBridge()") {
             @Override
             protected boolean isSort(MethodDescription target) {
-                return target.isBridge() && target.getDeclaringType()
+                return target.isBridge() && target.getDeclaringElement()
                         .getDeclaredMethods()
                         .filter(isMethod().and(not(is(target))).and(isSpecializationOf(target)))
                         .size() == 0;

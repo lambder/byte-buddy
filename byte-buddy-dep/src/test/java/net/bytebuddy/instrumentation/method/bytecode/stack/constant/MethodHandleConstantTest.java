@@ -44,11 +44,11 @@ public class MethodHandleConstantTest {
 
     @Before
     public void setUp() throws Exception {
-        when(methodDescription.getDeclaringType()).thenReturn(typeDescription);
+        when(methodDescription.getDeclaringElement()).thenReturn(typeDescription);
         when(typeDescription.getInternalName()).thenReturn(FOO);
         when(methodDescription.getInternalName()).thenReturn(BAR);
         when(methodDescription.getDescriptor()).thenReturn(QUX);
-        when(fieldDescription.getDeclaringType()).thenReturn(typeDescription);
+        when(fieldDescription.getDeclaringElement()).thenReturn(typeDescription);
         when(fieldDescription.getInternalName()).thenReturn(FOO);
         when(fieldDescription.getInternalName()).thenReturn(BAR);
         when(fieldDescription.getDescriptor()).thenReturn(QUX);

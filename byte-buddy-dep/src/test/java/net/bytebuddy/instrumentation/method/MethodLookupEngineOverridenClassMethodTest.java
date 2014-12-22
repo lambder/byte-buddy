@@ -27,15 +27,15 @@ public class MethodLookupEngineOverridenClassMethodTest {
 
     @Before
     public void setUp() throws Exception {
-        when(first.getDeclaringType()).thenReturn(firstType);
-        when(second.getDeclaringType()).thenReturn(secondType);
+        when(first.getDeclaringElement()).thenReturn(firstType);
+        when(second.getDeclaringElement()).thenReturn(secondType);
         when(first.getModifiers()).thenReturn(MODIFIERS);
     }
 
     @Test
     public void testOverridingMethodDominates() throws Exception {
         MethodDescription overriddenClassMethod = MethodLookupEngine.OverridenClassMethod.of(first, second);
-        assertThat(overriddenClassMethod.getDeclaringType(), is(firstType));
+        assertThat(overriddenClassMethod.getDeclaringElement(), is(firstType));
         assertThat(overriddenClassMethod.getModifiers(), is(MODIFIERS));
     }
 

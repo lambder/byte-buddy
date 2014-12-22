@@ -72,7 +72,7 @@ public class OriginBinderTest extends AbstractAnnotationBinderTest<Origin> {
     @Test
     public void testMethodHandleBinding() throws Exception {
         when(targetType.getInternalName()).thenReturn(METHOD_HANDLE_TYPE_INTERNAL_NAME);
-        when(source.getDeclaringType()).thenReturn(mock(TypeDescription.class));
+        when(source.getDeclaringElement()).thenReturn(mock(TypeDescription.class));
         MethodDelegationBinder.ParameterBinding<?> parameterBinding = Origin.Binder.INSTANCE
                 .bind(annotationDescription, INDEX, source, target, instrumentationTarget, assigner);
         assertThat(parameterBinding.isValid(), is(true));

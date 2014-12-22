@@ -24,7 +24,7 @@ public class MethodInvocationOtherTest {
         ObjectPropertyAssertion.of(MethodInvocation.Invocation.class).refine(new ObjectPropertyAssertion.Refinement<MethodDescription>() {
             @Override
             public void apply(MethodDescription mock) {
-                when(mock.getDeclaringType()).thenReturn(mock(TypeDescription.class));
+                when(mock.getDeclaringElement()).thenReturn(mock(TypeDescription.class));
                 TypeDescription returnType = mock(TypeDescription.class);
                 when(returnType.getStackSize()).thenReturn(StackSize.ZERO);
                 when(mock.getReturnType()).thenReturn(returnType);

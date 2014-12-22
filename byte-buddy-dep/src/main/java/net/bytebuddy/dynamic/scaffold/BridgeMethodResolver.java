@@ -107,7 +107,7 @@ public interface BridgeMethodResolver {
          */
         private static BridgeTarget findBridgeTargetFor(MethodDescription bridgeMethod,
                                                         ConflictHandler conflictHandler) {
-            MethodList targetCandidates = bridgeMethod.getDeclaringType()
+            MethodList targetCandidates = bridgeMethod.getDeclaringElement()
                     .getDeclaredMethods()
                     .filter(not(isBridge()).and(isSpecializationOf(bridgeMethod)));
             switch (targetCandidates.size()) {

@@ -47,23 +47,23 @@ public interface FieldDescription extends ByteCodeElement {
 
         @Override
         public boolean isVisibleTo(TypeDescription typeDescription) {
-            return getDeclaringType().isVisibleTo(typeDescription)
+            return getDeclaringElement().isVisibleTo(typeDescription)
                     && (isPublic()
-                    || typeDescription.equals(getDeclaringType())
-                    || (isProtected() && getDeclaringType().isAssignableFrom(typeDescription))
-                    || (!isPrivate() && typeDescription.isSamePackage(getDeclaringType())));
+                    || typeDescription.equals(getDeclaringElement())
+                    || (isProtected() && getDeclaringElement().isAssignableFrom(typeDescription))
+                    || (!isPrivate() && typeDescription.isSamePackage(getDeclaringElement())));
         }
 
         @Override
         public boolean equals(Object other) {
             return other == this || other instanceof FieldDescription
                     && getName().equals(((FieldDescription) other).getName())
-                    && getDeclaringType().equals(((FieldDescription) other).getDeclaringType());
+                    && getDeclaringElement().equals(((FieldDescription) other).getDeclaringElement());
         }
 
         @Override
         public int hashCode() {
-            return getDeclaringType().hashCode() + 31 * getName().hashCode();
+            return getDeclaringElement().hashCode() + 31 * getName().hashCode();
         }
 
         @Override
@@ -73,7 +73,7 @@ public interface FieldDescription extends ByteCodeElement {
                 stringBuilder.append(Modifier.toString(getModifiers())).append(" ");
             }
             stringBuilder.append(getFieldType().getSourceCodeName()).append(" ");
-            stringBuilder.append(getDeclaringType().getSourceCodeName()).append(".");
+            stringBuilder.append(getDeclaringElement().getSourceCodeName()).append(".");
             return stringBuilder.append(getName()).toString();
         }
     }
@@ -113,7 +113,7 @@ public interface FieldDescription extends ByteCodeElement {
         }
 
         @Override
-        public TypeDescription getDeclaringType() {
+        public TypeDescription getDeclaringElement() {
             return new TypeDescription.ForLoadedType(field.getDeclaringClass());
         }
 
@@ -188,7 +188,7 @@ public interface FieldDescription extends ByteCodeElement {
         }
 
         @Override
-        public TypeDescription getDeclaringType() {
+        public TypeDescription getDeclaringElement() {
             return declaringType;
         }
 

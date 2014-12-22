@@ -205,7 +205,7 @@ public abstract class MethodConstant implements StackManipulation {
 
         @Override
         protected Size prepare(MethodVisitor methodVisitor) {
-            methodVisitor.visitLdcInsn(Type.getType(methodDescription.getDeclaringType().getDescriptor()));
+            methodVisitor.visitLdcInsn(Type.getType(methodDescription.getDeclaringElement().getDescriptor()));
             methodVisitor.visitLdcInsn(methodDescription.getInternalName());
             return new Size(2, 2);
         }
@@ -255,7 +255,7 @@ public abstract class MethodConstant implements StackManipulation {
 
         @Override
         protected Size prepare(MethodVisitor methodVisitor) {
-            methodVisitor.visitLdcInsn(Type.getType(methodDescription.getDeclaringType().getDescriptor()));
+            methodVisitor.visitLdcInsn(Type.getType(methodDescription.getDeclaringElement().getDescriptor()));
             return new Size(1, 1);
         }
 

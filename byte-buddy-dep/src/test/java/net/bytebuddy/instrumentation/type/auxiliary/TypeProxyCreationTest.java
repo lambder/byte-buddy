@@ -70,7 +70,7 @@ public class TypeProxyCreationTest {
                 .getInvokableMethods()
                 .filter(isOverridable().and(not(isDefaultFinalizer())));
         when(proxyMethod.getParameterTypes()).thenReturn(new TypeList.Explicit(Arrays.asList(foo, foo, foo)));
-        when(proxyMethod.getDeclaringType()).thenReturn(foo);
+        when(proxyMethod.getDeclaringElement()).thenReturn(foo);
         when(proxyMethod.getInternalName()).thenReturn(FOO);
         when(proxyMethod.getDescriptor()).thenReturn(FOO);
         when(proxyMethod.getReturnType()).thenReturn(new TypeDescription.ForLoadedType(Object.class));

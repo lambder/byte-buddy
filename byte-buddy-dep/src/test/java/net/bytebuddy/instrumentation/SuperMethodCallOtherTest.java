@@ -98,7 +98,7 @@ public class SuperMethodCallOtherTest extends AbstractInstrumentationTest {
         when(methodDescription.getParameterTypes()).thenReturn(methodParameters);
         when(methodParameters.iterator()).thenReturn(Arrays.<TypeDescription>asList().iterator());
         when(methodDescription.getReturnType()).thenReturn(returnType);
-        when(methodDescription.getDeclaringType()).thenReturn(declaringType);
+        when(methodDescription.getDeclaringElement()).thenReturn(declaringType);
         when(declaringType.getStackSize()).thenReturn(StackSize.SINGLE);
         when(returnType.getStackSize()).thenReturn(StackSize.SINGLE);
         when(superType.getDeclaredMethods()).thenReturn(superTypeMethods);

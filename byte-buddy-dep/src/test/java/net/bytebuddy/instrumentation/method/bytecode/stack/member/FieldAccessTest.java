@@ -73,7 +73,7 @@ public class FieldAccessTest {
 
     @Before
     public void setUp() throws Exception {
-        when(fieldDescription.getDeclaringType()).thenReturn(declaringType);
+        when(fieldDescription.getDeclaringElement()).thenReturn(declaringType);
         when(fieldDescription.getFieldType()).thenReturn(fieldType);
         when(declaringType.getInternalName()).thenReturn(FOO);
         when(fieldDescription.getInternalName()).thenReturn(BAR);

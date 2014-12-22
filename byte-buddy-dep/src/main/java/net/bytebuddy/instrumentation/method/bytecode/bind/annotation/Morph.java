@@ -188,7 +188,7 @@ public @interface Morph {
                                                                Instrumentation.Target instrumentationTarget,
                                                                Assigner assigner) {
             TypeDescription parameterType = target.getParameterTypes().get(targetParameterIndex);
-            if (!parameterType.equals(forwardingMethod.getDeclaringType())) {
+            if (!parameterType.equals(forwardingMethod.getDeclaringElement())) {
                 throw new IllegalStateException(String.format("The installed type %s for the @Morph annotation does not " +
                         "equal the annotated parameter type on %s", parameterType, target));
             }
@@ -202,7 +202,7 @@ public @interface Morph {
                         : new DefaultMethodLocator.Explicit(typeDescription)).resolve(instrumentationTarget, source);
             }
             return specialMethodInvocation.isValid()
-                    ? new MethodDelegationBinder.ParameterBinding.Anonymous(new RedirectionProxy(forwardingMethod.getDeclaringType(),
+                    ? new MethodDelegationBinder.ParameterBinding.Anonymous(new RedirectionProxy(forwardingMethod.getDeclaringElement(),
                     instrumentationTarget.getTypeDescription(),
                     specialMethodInvocation,
                     assigner,

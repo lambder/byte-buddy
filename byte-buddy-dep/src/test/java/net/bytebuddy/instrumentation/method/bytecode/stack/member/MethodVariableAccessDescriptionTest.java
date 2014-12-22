@@ -42,7 +42,7 @@ public class MethodVariableAccessDescriptionTest {
 
     @Before
     public void setUp() throws Exception {
-        when(methodDescription.getDeclaringType()).thenReturn(declaringType);
+        when(methodDescription.getDeclaringElement()).thenReturn(declaringType);
         when(methodDescription.getParameterTypes()).thenReturn(parameterTypes);
         when(parameterTypes.size()).thenReturn(PARAMETER_STACK_SIZE);
         when(parameterTypes.get(0)).thenReturn(firstParameter);

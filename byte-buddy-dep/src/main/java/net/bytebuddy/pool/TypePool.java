@@ -1637,7 +1637,7 @@ public interface TypePool {
         }
 
         @Override
-        public TypeDescription getDeclaringType() {
+        public TypeDescription getDeclaringElement() {
             return declarationContext.isDeclaredInType()
                     ? declarationContext.getEnclosingType(typePool)
                     : null;
@@ -3546,7 +3546,7 @@ public interface TypePool {
 
             @Override
             public Object getValue(MethodDescription methodDescription) {
-                if (!methodDescription.getDeclaringType().getDescriptor().equals(descriptor)) {
+                if (!methodDescription.getDeclaringElement().getDescriptor().equals(descriptor)) {
                     throw new IllegalArgumentException(methodDescription + " is not declared by " + getAnnotationType());
                 }
                 AnnotationValue<?, ?> annotationValue = values.get(methodDescription.getName());
@@ -3698,7 +3698,7 @@ public interface TypePool {
             }
 
             @Override
-            public TypeDescription getDeclaringType() {
+            public TypeDescription getDeclaringElement() {
                 return LazyTypeDescription.this;
             }
 
@@ -3855,7 +3855,7 @@ public interface TypePool {
             }
 
             @Override
-            public TypeDescription getDeclaringType() {
+            public TypeDescription getDeclaringElement() {
                 return LazyTypeDescription.this;
             }
 

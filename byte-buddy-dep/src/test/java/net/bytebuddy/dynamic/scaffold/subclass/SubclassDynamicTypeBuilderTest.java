@@ -169,7 +169,7 @@ public class SubclassDynamicTypeBuilderTest {
                         FieldDescription fieldDescription = instrumentationContext.cache(new TextConstant(BAR),
                                 new TypeDescription.ForLoadedType(String.class));
                         methodVisitor.visitFieldInsn(Opcodes.GETSTATIC,
-                                fieldDescription.getDeclaringType().getInternalName(),
+                                fieldDescription.getDeclaringElement().getInternalName(),
                                 fieldDescription.getInternalName(),
                                 fieldDescription.getDescriptor());
                         methodVisitor.visitInsn(Opcodes.ARETURN);

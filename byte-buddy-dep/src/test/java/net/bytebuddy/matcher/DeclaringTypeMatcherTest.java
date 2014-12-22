@@ -1,6 +1,6 @@
 package net.bytebuddy.matcher;
 
-import net.bytebuddy.instrumentation.type.DeclaredInType;
+import net.bytebuddy.instrumentation.DeclaredBy;
 import net.bytebuddy.instrumentation.type.TypeDescription;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -15,7 +15,7 @@ public class DeclaringTypeMatcherTest extends AbstractElementMatcherTest<Declari
     private ElementMatcher<? super TypeDescription> typeMatcher;
 
     @Mock
-    private DeclaredInType declaredInType;
+    private DeclaredBy declaredBy;
 
     @Mock
     private TypeDescription typeDescription;
@@ -27,31 +27,31 @@ public class DeclaringTypeMatcherTest extends AbstractElementMatcherTest<Declari
 
     @Test
     public void testMatch() throws Exception {
-        when(declaredInType.getDeclaringType()).thenReturn(typeDescription);
+        when(declaredBy.getDeclaringElement()).thenReturn(typeDescription);
         when(typeMatcher.matches(typeDescription)).thenReturn(true);
-        assertThat(new DeclaringTypeMatcher<DeclaredInType>(typeMatcher).matches(declaredInType), is(true));
+        assertThat(new DeclaringTypeMatcher<DeclaredBy>(typeMatcher).matches(declaredBy), is(true));
         verify(typeMatcher).matches(typeDescription);
         verifyNoMoreInteractions(typeMatcher);
-        verify(declaredInType).getDeclaringType();
-        verifyNoMoreInteractions(declaredInType);
+        verify(declaredBy).getDeclaringElement();
+        verifyNoMoreInteractions(declaredBy);
     }
 
     @Test
     public void testNoMatch() throws Exception {
-        when(declaredInType.getDeclaringType()).thenReturn(typeDescription);
+        when(declaredBy.getDeclaringElement()).thenReturn(typeDescription);
         when(typeMatcher.matches(typeDescription)).thenReturn(false);
-        assertThat(new DeclaringTypeMatcher<DeclaredInType>(typeMatcher).matches(declaredInType), is(false));
+        assertThat(new DeclaringTypeMatcher<DeclaredBy>(typeMatcher).matches(declaredBy), is(false));
         verify(typeMatcher).matches(typeDescription);
         verifyNoMoreInteractions(typeMatcher);
-        verify(declaredInType).getDeclaringType();
-        verifyNoMoreInteractions(declaredInType);
+        verify(declaredBy).getDeclaringElement();
+        verifyNoMoreInteractions(declaredBy);
     }
 
     @Test
     public void testNoMatchWhenNull() throws Exception {
-        assertThat(new DeclaringTypeMatcher<DeclaredInType>(typeMatcher).matches(declaredInType), is(false));
+        assertThat(new DeclaringTypeMatcher<DeclaredBy>(typeMatcher).matches(declaredBy), is(false));
         verifyZeroInteractions(typeMatcher);
-        verify(declaredInType).getDeclaringType();
-        verifyNoMoreInteractions(declaredInType);
+        verify(declaredBy).getDeclaringElement();
+        verifyNoMoreInteractions(declaredBy);
     }
 }

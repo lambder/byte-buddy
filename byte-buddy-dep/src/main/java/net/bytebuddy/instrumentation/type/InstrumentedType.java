@@ -287,7 +287,7 @@ public interface InstrumentedType extends TypeDescription {
         }
 
         @Override
-        public TypeDescription getDeclaringType() {
+        public TypeDescription getDeclaringElement() {
             return null;
         }
 
@@ -405,7 +405,7 @@ public interface InstrumentedType extends TypeDescription {
             }
 
             @Override
-            public TypeDescription getDeclaringType() {
+            public TypeDescription getDeclaringElement() {
                 return AbstractBase.this;
             }
 
@@ -537,7 +537,7 @@ public interface InstrumentedType extends TypeDescription {
             }
 
             @Override
-            public TypeDescription getDeclaringType() {
+            public TypeDescription getDeclaringElement() {
                 return AbstractBase.this;
             }
 

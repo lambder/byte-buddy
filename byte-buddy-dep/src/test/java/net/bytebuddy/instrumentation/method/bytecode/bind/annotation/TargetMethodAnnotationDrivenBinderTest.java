@@ -117,7 +117,7 @@ public class TargetMethodAnnotationDrivenBinderTest {
         TypeDescription declaringType = mock(TypeDescription.class);
         when(declaringType.getInternalName()).thenReturn(FOO);
         when(declaringType.isInterface()).thenReturn(false);
-        when(target.getDeclaringType()).thenReturn(declaringType);
+        when(target.getDeclaringElement()).thenReturn(declaringType);
         when(target.getInternalName()).thenReturn(BAR);
         when(target.getDescriptor()).thenReturn(BAZ);
         when(target.isStatic()).thenReturn(true);

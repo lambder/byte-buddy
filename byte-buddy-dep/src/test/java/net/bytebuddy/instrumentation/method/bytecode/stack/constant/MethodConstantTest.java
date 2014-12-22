@@ -47,7 +47,7 @@ public class MethodConstantTest {
 
     @Before
     public void setUp() throws Exception {
-        when(methodDescription.getDeclaringType()).thenReturn(declaringType);
+        when(methodDescription.getDeclaringElement()).thenReturn(declaringType);
         when(methodDescription.getInternalName()).thenReturn(FOO);
         when(methodDescription.getParameterTypes()).thenReturn(typeList);
         when(declaringType.getDescriptor()).thenReturn(BAR);
@@ -56,7 +56,7 @@ public class MethodConstantTest {
         when(fieldDescription.getFieldType()).thenReturn(fieldType);
         when(fieldDescription.isStatic()).thenReturn(true);
         when(fieldType.getStackSize()).thenReturn(StackSize.SINGLE);
-        when(fieldDescription.getDeclaringType()).thenReturn(declaringType);
+        when(fieldDescription.getDeclaringElement()).thenReturn(declaringType);
         when(declaringType.getInternalName()).thenReturn(BAZ);
         when(fieldDescription.getInternalName()).thenReturn(FOO);
         when(fieldDescription.getDescriptor()).thenReturn(QUX);

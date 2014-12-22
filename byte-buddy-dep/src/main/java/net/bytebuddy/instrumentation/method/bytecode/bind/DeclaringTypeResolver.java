@@ -18,8 +18,8 @@ public enum DeclaringTypeResolver implements MethodDelegationBinder.AmbiguityRes
     public Resolution resolve(MethodDescription source,
                               MethodDelegationBinder.MethodBinding left,
                               MethodDelegationBinder.MethodBinding right) {
-        TypeDescription leftType = left.getTarget().getDeclaringType();
-        TypeDescription rightType = right.getTarget().getDeclaringType();
+        TypeDescription leftType = left.getTarget().getDeclaringElement();
+        TypeDescription rightType = right.getTarget().getDeclaringElement();
         if (leftType.equals(rightType)) {
             return Resolution.AMBIGUOUS;
         } else if (leftType.isAssignableFrom(rightType)) {

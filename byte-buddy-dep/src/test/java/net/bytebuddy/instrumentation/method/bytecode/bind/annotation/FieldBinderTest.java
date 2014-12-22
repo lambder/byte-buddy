@@ -41,8 +41,8 @@ public class FieldBinderTest extends AbstractAnnotationBinderTest<Field> {
     @Before
     public void setUp() throws Exception {
         super.setUp();
-        when(getterMethod.getDeclaringType()).thenReturn(getterType);
-        when(setterMethod.getDeclaringType()).thenReturn(setterType);
+        when(getterMethod.getDeclaringElement()).thenReturn(getterType);
+        when(setterMethod.getDeclaringElement()).thenReturn(setterType);
         when(instrumentedType.getDeclaredFields()).thenReturn(new FieldList.Explicit(Arrays.asList(fieldDescription)));
         when(fieldDescription.getFieldType()).thenReturn(fieldType);
     }

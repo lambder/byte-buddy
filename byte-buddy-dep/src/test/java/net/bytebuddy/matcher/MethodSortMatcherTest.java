@@ -112,7 +112,7 @@ public class MethodSortMatcherTest extends AbstractElementMatcherTest<MethodSort
                 when(mock.isBridge()).thenReturn(true);
                 TypeDescription typeDescription = Mockito.mock(TypeDescription.class);
                 MethodList methodList = Mockito.mock(MethodList.class);
-                when(mock.getDeclaringType()).thenReturn(typeDescription);
+                when(mock.getDeclaringElement()).thenReturn(typeDescription);
                 when(typeDescription.getDeclaredMethods()).thenReturn(methodList);
                 when(methodList.filter(any(ElementMatcher.class))).thenReturn(methodList);
                 when(methodList.size()).thenReturn(0);

@@ -113,7 +113,7 @@ public class MethodCallProxy implements AuxiliaryType {
                 new LinkedHashMap<String, TypeDescription>((methodDescription.isStatic() ? 0 : 1) + parameterTypes.size());
         int currentIndex = 0;
         if (!methodDescription.isStatic()) {
-            typeDescriptions.put(fieldName(currentIndex++), methodDescription.getDeclaringType());
+            typeDescriptions.put(fieldName(currentIndex++), methodDescription.getDeclaringElement());
         }
         for (TypeDescription parameterType : parameterTypes) {
             typeDescriptions.put(fieldName(currentIndex++), parameterType);

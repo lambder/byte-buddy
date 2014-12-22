@@ -275,7 +275,7 @@ public interface MethodRebaseResolver {
             public ForRebasedMethod(MethodDescription methodDescription, MethodNameTransformer methodNameTransformer) {
                 this.methodDescription = new MethodDescription.Latent(
                         methodNameTransformer.transform(methodDescription.getInternalName()),
-                        methodDescription.getDeclaringType(),
+                        methodDescription.getDeclaringElement(),
                         methodDescription.getReturnType(),
                         methodDescription.getParameterTypes(),
                         REBASED_METHOD_MODIFIER
@@ -335,7 +335,7 @@ public interface MethodRebaseResolver {
              */
             public ForRebasedConstructor(MethodDescription methodDescription, TypeDescription placeholderType) {
                 this.methodDescription = new MethodDescription.Latent(methodDescription.getInternalName(),
-                        methodDescription.getDeclaringType(),
+                        methodDescription.getDeclaringElement(),
                         methodDescription.getReturnType(),
                         join(methodDescription.getParameterTypes(), placeholderType),
                         REBASED_METHOD_MODIFIER,

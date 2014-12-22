@@ -64,7 +64,7 @@ public abstract class AbstractInstrumentationTargetTest {
                         return (MethodDescription) invocation.getArguments()[0];
                     }
                 });
-        when(invokableMethod.getDeclaringType()).thenReturn(methodType);
+        when(invokableMethod.getDeclaringElement()).thenReturn(methodType);
         when(invokableMethod.getReturnType()).thenReturn(returnType);
         when(returnType.getStackSize()).thenReturn(StackSize.ZERO);
         when(invokableMethod.getInternalName()).thenReturn(FOO);
@@ -72,7 +72,7 @@ public abstract class AbstractInstrumentationTargetTest {
         when(defaultMethod.getInternalName()).thenReturn(QUXBAZ);
         when(defaultMethod.getDescriptor()).thenReturn(FOOBAZ);
         when(defaultMethod.getUniqueSignature()).thenReturn(FOOQUX);
-        when(defaultMethod.getDeclaringType()).thenReturn(defaultType);
+        when(defaultMethod.getDeclaringElement()).thenReturn(defaultType);
         when(defaultMethod.getReturnType()).thenReturn(returnType);
         when(defaultType.isInterface()).thenReturn(true);
         when(defaultMethod.isSpecializableFor(defaultType)).thenReturn(true);
@@ -108,7 +108,7 @@ public abstract class AbstractInstrumentationTargetTest {
         MethodDescription methodDescription = mock(MethodDescription.class);
         when(methodDescription.getReturnType()).thenReturn(returnType);
         TypeDescription typeDescription = mock(TypeDescription.class);
-        when(methodDescription.getDeclaringType()).thenReturn(typeDescription);
+        when(methodDescription.getDeclaringElement()).thenReturn(typeDescription);
         assertThat(instrumentationTarget.invokeSuper(methodDescription, methodLookup).isValid(), is(false));
     }
 }

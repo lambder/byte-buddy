@@ -1,6 +1,6 @@
 package net.bytebuddy.matcher;
 
-import net.bytebuddy.instrumentation.type.DeclaredInType;
+import net.bytebuddy.instrumentation.DeclaredBy;
 import net.bytebuddy.instrumentation.type.TypeDescription;
 
 /**
@@ -9,7 +9,7 @@ import net.bytebuddy.instrumentation.type.TypeDescription;
  *
  * @param <T> The exact type of the element being matched.
  */
-public class DeclaringTypeMatcher<T extends DeclaredInType> extends ElementMatcher.Junction.AbstractBase<T> {
+public class DeclaringTypeMatcher<T extends DeclaredBy<? extends TypeDescription>> extends ElementMatcher.Junction.AbstractBase<T> {
 
     /**
      * The type matcher to be applied if the target element is declared in a type.
@@ -27,7 +27,7 @@ public class DeclaringTypeMatcher<T extends DeclaredInType> extends ElementMatch
 
     @Override
     public boolean matches(T target) {
-        TypeDescription typeDescription = target.getDeclaringType();
+        TypeDescription typeDescription = target.getDeclaringElement();
         return typeDescription != null && typeMatcher.matches(typeDescription);
     }
 

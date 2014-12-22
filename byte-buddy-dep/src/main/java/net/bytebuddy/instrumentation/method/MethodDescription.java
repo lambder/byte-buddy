@@ -218,7 +218,7 @@ public interface MethodDescription extends ByteCodeElement {
 
         @Override
         public String getName() {
-            return isMethod() ? getInternalName() : getDeclaringType().getName();
+            return isMethod() ? getInternalName() : getDeclaringElement().getName();
         }
 
         @Override
@@ -249,11 +249,11 @@ public interface MethodDescription extends ByteCodeElement {
 
         @Override
         public boolean isVisibleTo(TypeDescription typeDescription) {
-            return getDeclaringType().isVisibleTo(typeDescription)
+            return getDeclaringElement().isVisibleTo(typeDescription)
                     && (isPublic()
-                    || typeDescription.equals(getDeclaringType())
-                    || (isProtected() && getDeclaringType().isAssignableFrom(typeDescription))
-                    || (!isPrivate() && typeDescription.isSamePackage(getDeclaringType())));
+                    || typeDescription.equals(getDeclaringElement())
+                    || (isProtected() && getDeclaringElement().isAssignableFrom(typeDescription))
+                    || (!isPrivate() && typeDescription.isSamePackage(getDeclaringElement())));
         }
 
         @Override
@@ -278,7 +278,7 @@ public interface MethodDescription extends ByteCodeElement {
 
         @Override
         public boolean isDefaultMethod() {
-            return !isAbstract() && !isBridge() && getDeclaringType().isInterface();
+            return !isAbstract() && !isBridge() && getDeclaringElement().isInterface();
         }
 
         @Override
@@ -286,9 +286,9 @@ public interface MethodDescription extends ByteCodeElement {
             if (isStatic()) { // Static private methods are never specializable, check static property first
                 return false;
             } else if (isPrivate() || isConstructor() || isDefaultMethod()) {
-                return getDeclaringType().equals(targetType);
+                return getDeclaringElement().equals(targetType);
             } else {
-                return !isAbstract() && getDeclaringType().isAssignableFrom(targetType);
+                return !isAbstract() && getDeclaringElement().isAssignableFrom(targetType);
             }
         }
 
@@ -301,14 +301,14 @@ public interface MethodDescription extends ByteCodeElement {
         public boolean equals(Object other) {
             return other == this || other instanceof MethodDescription
                     && getInternalName().equals(((MethodDescription) other).getInternalName())
-                    && getDeclaringType().equals(((MethodDescription) other).getDeclaringType())
+                    && getDeclaringElement().equals(((MethodDescription) other).getDeclaringElement())
                     && getReturnType().equals(((MethodDescription) other).getReturnType())
                     && getParameterTypes().equals(((MethodDescription) other).getParameterTypes());
         }
 
         @Override
         public int hashCode() {
-            int hashCode = getDeclaringType().hashCode();
+            int hashCode = getDeclaringElement().hashCode();
             hashCode = 31 * hashCode + getInternalName().hashCode();
             hashCode = 31 * hashCode + getReturnType().hashCode();
             return 31 * hashCode + getParameterTypes().hashCode();
@@ -323,7 +323,7 @@ public interface MethodDescription extends ByteCodeElement {
             }
             if (isMethod()) {
                 stringBuilder.append(getReturnType().getSourceCodeName()).append(" ");
-                stringBuilder.append(getDeclaringType().getSourceCodeName()).append(".");
+                stringBuilder.append(getDeclaringElement().getSourceCodeName()).append(".");
             }
             stringBuilder.append(getName()).append("(");
             boolean first = true;
@@ -373,7 +373,7 @@ public interface MethodDescription extends ByteCodeElement {
         }
 
         @Override
-        public TypeDescription getDeclaringType() {
+        public TypeDescription getDeclaringElement() {
             return new TypeDescription.ForLoadedType(constructor.getDeclaringClass());
         }
 
@@ -473,7 +473,7 @@ public interface MethodDescription extends ByteCodeElement {
         }
 
         @Override
-        public TypeDescription getDeclaringType() {
+        public TypeDescription getDeclaringElement() {
             return new TypeDescription.ForLoadedType(method.getDeclaringClass());
         }
 
@@ -696,7 +696,7 @@ public interface MethodDescription extends ByteCodeElement {
         }
 
         @Override
-        public TypeDescription getDeclaringType() {
+        public TypeDescription getDeclaringElement() {
             return declaringType;
         }
 

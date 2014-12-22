@@ -18,8 +18,8 @@ public class DeclaringTypeResolverTest extends AbstractAmbiguityResolverTest {
     @Before
     public void setUp() throws Exception {
         super.setUp();
-        when(leftMethod.getDeclaringType()).thenReturn(leftType);
-        when(rightMethod.getDeclaringType()).thenReturn(rightType);
+        when(leftMethod.getDeclaringElement()).thenReturn(leftType);
+        when(rightMethod.getDeclaringElement()).thenReturn(rightType);
     }
 
     @Test

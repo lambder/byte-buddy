@@ -59,7 +59,7 @@ public class MethodInvocationTest {
     @Before
     public void setUp() throws Exception {
         when(methodDescription.getReturnType()).thenReturn(returnType);
-        when(methodDescription.getDeclaringType()).thenReturn(declaringType);
+        when(methodDescription.getDeclaringElement()).thenReturn(declaringType);
         when(methodDescription.getStackSize()).thenReturn(ARGUMENT_STACK_SIZE);
         when(declaringType.getInternalName()).thenReturn(FOO);
         when(otherType.getInternalName()).thenReturn(BAZ);

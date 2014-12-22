@@ -263,7 +263,7 @@ public abstract class AbstractInstrumentedTypeTest {
 
     @Test
     public void testDeclaringType() throws Exception {
-        assertThat(makePlainInstrumentedType().getDeclaringType(), nullValue());
+        assertThat(makePlainInstrumentedType().getDeclaringElement(), nullValue());
     }
 
     @Test

@@ -7,6 +7,8 @@ import net.bytebuddy.instrumentation.field.FieldList;
 import net.bytebuddy.instrumentation.method.MethodDescription;
 import net.bytebuddy.instrumentation.method.MethodList;
 import net.bytebuddy.instrumentation.method.bytecode.stack.StackSize;
+import net.bytebuddy.instrumentation.type.generic.GenericType;
+import net.bytebuddy.instrumentation.type.generic.GenericTypeList;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
@@ -14,6 +16,7 @@ import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,7 +25,7 @@ import static net.bytebuddy.utility.ByteBuddyCommons.join;
 /**
  * Implementations of this interface represent a Java type, i.e. a class or interface.
  */
-public interface TypeDescription extends ByteCodeElement {
+public interface TypeDescription extends ByteCodeElement, GenericType<TypeDescription> {
 
     /**
      * Checks if {@code object} is an instance of the type represented by this instance.
@@ -93,11 +96,7 @@ public interface TypeDescription extends ByteCodeElement {
      */
     boolean isArray();
 
-    /**
-     * Returns the component type of this type.
-     *
-     * @return The component type of this array or {@code null} if this type description does not represent an array.
-     */
+    @Override
     TypeDescription getComponentType();
 
     /**
@@ -365,6 +364,31 @@ public interface TypeDescription extends ByteCodeElement {
         }
 
         @Override
+        public String toSymbol() {
+            return getInternalName();
+        }
+
+        @Override
+        public GenericTypeList getUpperBounds() {
+            return new GenericTypeList.Explicit(Collections.singletonList(this));
+        }
+
+        @Override
+        public GenericTypeList getLowerBounds() {
+            return new GenericTypeList.Empty();
+        }
+
+        @Override
+        public GenericTypeList getParameters() {
+            return new GenericTypeList.Empty();
+        }
+
+        @Override
+        public TypeDescription asRawType() {
+            return this;
+        }
+
+        @Override
         public boolean equals(Object other) {
             return other == this || other instanceof TypeDescription
                     && getName().equals(((TypeDescription) other).getName());
@@ -572,7 +596,7 @@ public interface TypeDescription extends ByteCodeElement {
         }
 
         @Override
-        public TypeDescription getDeclaringType() {
+        public TypeDescription getDeclaringElement() {
             Class<?> declaringType = type.getDeclaringClass();
             return declaringType == null ? null : new TypeDescription.ForLoadedType(declaringType);
         }
@@ -887,7 +911,7 @@ public interface TypeDescription extends ByteCodeElement {
         }
 
         @Override
-        public TypeDescription getDeclaringType() {
+        public TypeDescription getDeclaringElement() {
             return null;
         }
 

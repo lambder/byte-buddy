@@ -32,7 +32,7 @@ public class PipeBinderTest extends AbstractAnnotationBinderTest<Pipe> {
     @Before
     public void setUp() throws Exception {
         super.setUp();
-        when(targetMethod.getDeclaringType()).thenReturn(targetMethodType);
+        when(targetMethod.getDeclaringElement()).thenReturn(targetMethodType);
         binder = new Pipe.Binder(targetMethod);
     }
 
